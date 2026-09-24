@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Diagram Alur & Use Case - SIMAMA</title>
+<style>
+  @page { size: A4; margin: 15mm; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; line-height: 1.5; font-size: 12.5px; }
+  .header-box { text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 8px; margin-bottom: 16px; }
+  .header-box h1 { margin: 0; color: #1e3a8a; font-size: 18px; text-transform: uppercase; }
+  .header-box p { margin: 3px 0 0; color: #475569; font-size: 12px; }
+  h2 { color: #1e40af; font-size: 14px; border-bottom: 1px solid #cbd5e1; padding-bottom: 3px; margin-top: 14px; }
+  .diagram-container { text-align: center; margin: 10px 0; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; }
+  svg { max-width: 100%; height: auto; }
+  .desc-box { background: #f8fafc; border-left: 3px solid #3b82f6; padding: 8px 12px; margin: 8px 0; font-size: 11.5px; }
+</style>
+</head>
+<body>
+<div class="header-box">
+  <h1>Dokumen Diagram Alur Program (Flowchart) & Use Case</h1>
+  <p><strong>Sistem Manajemen Data Mahasiswa & Transkrip Nilai (SIMAMA)</strong></p>
+  <p>Unit Kompetensi: Mengimplementasikan Spesifikasi Program & Pemrograman Terstruktur</p>
+</div>
+
+<h2>1. Use Case Diagram</h2>
+<div class="diagram-container">
+  <svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg">
+    <!-- Actor -->
+    <circle cx="60" cy="95" r="16" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2"/>
+    <line x1="60" y1="111" x2="60" y2="150" stroke="#1d4ed8" stroke-width="2"/>
+    <line x1="40" y1="125" x2="80" y2="125" stroke="#1d4ed8" stroke-width="2"/>
+    <line x1="60" y1="150" x2="45" y2="185" stroke="#1d4ed8" stroke-width="2"/>
+    <line x1="60" y1="150" x2="75" y2="185" stroke="#1d4ed8" stroke-width="2"/>
+    <text x="60" y="205" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e3a8a">Admin / Dosen</text>
+
+    <!-- System Boundary -->
+    <rect x="150" y="10" width="510" height="210" rx="8" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <text x="165" y="30" font-size="12" font-weight="bold" fill="#0f172a">Sistem SIMAMA</text>
+
+    <!-- Use Cases -->
+    <!-- UC 1 -->
+    <ellipse cx="270" cy="55" rx="85" ry="18" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="270" y="59" text-anchor="middle" font-size="10.5" fill="#1e40af">Lihat Seluruh Mahasiswa</text>
+
+    <!-- UC 2 -->
+    <ellipse cx="270" cy="100" rx="85" ry="18" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="270" y="104" text-anchor="middle" font-size="10.5" fill="#1e40af">Tambah Mahasiswa & Nilai</text>
+
+    <!-- UC 3 -->
+    <ellipse cx="270" cy="145" rx="85" ry="18" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="270" y="149" text-anchor="middle" font-size="10.5" fill="#1e40af">Pencarian Mahasiswa</text>
+
+    <!-- UC 4 -->
+    <ellipse cx="530" cy="55" rx="85" ry="18" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="530" y="59" text-anchor="middle" font-size="10.5" fill="#1e40af">Ubah Data Mahasiswa</text>
+
+    <!-- UC 5 -->
+    <ellipse cx="530" cy="100" rx="85" ry="18" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="530" y="104" text-anchor="middle" font-size="10.5" fill="#1e40af">Hapus Data Mahasiswa</text>
+
+    <!-- UC 6 -->
+    <ellipse cx="530" cy="145" rx="85" ry="18" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="530" y="149" text-anchor="middle" font-size="10.5" fill="#1e40af">Statistik Nilai Kelas</text>
+
+    <!-- UC Sub: Kalkulasi -->
+    <ellipse cx="400" cy="190" rx="100" ry="16" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+    <text x="400" y="194" text-anchor="middle" font-size="10" font-weight="bold" fill="#92400e">&lt;&lt;include&gt;&gt; Kalkulasi Nilai & Grade</text>
+
+    <!-- Connecting Lines -->
+    <line x1="80" y1="110" x2="185" y2="55" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="80" y1="120" x2="185" y2="100" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="80" y1="130" x2="185" y2="145" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="80" y1="115" x2="445" y2="55" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="80" y1="125" x2="445" y2="100" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="80" y1="135" x2="445" y2="145" stroke="#64748b" stroke-width="1.2"/>
+
+    <!-- Include links -->
+    <line x1="310" y1="117" x2="350" y2="175" stroke="#d97706" stroke-width="1.2" stroke-dasharray="3,3"/>
+    <line x1="490" y1="72" x2="430" y2="175" stroke="#d97706" stroke-width="1.2" stroke-dasharray="3,3"/>
+  </svg>
+</div>
+
+<h2>2. Flowchart Alur Program CLI Utama</h2>
+<div class="diagram-container">
+  <svg viewBox="0 0 680 290" xmlns="http://www.w3.org/2000/svg">
+    <!-- Start -->
+    <rect x="290" y="10" width="100" height="28" rx="14" fill="#22c55e" stroke="#16a34a" stroke-width="1.5"/>
+    <text x="340" y="28" text-anchor="middle" font-size="11" font-weight="bold" fill="#ffffff">Mulai</text>
+
+    <!-- Init DB -->
+    <rect x="260" y="55" width="160" height="30" rx="4" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+    <text x="340" y="74" text-anchor="middle" font-size="10.5" fill="#0f172a">Inisialisasi SQLite & Seeding</text>
+
+    <!-- Menu Loop -->
+    <rect x="250" y="102" width="180" height="32" rx="4" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="340" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e40af">Tampilkan Menu Interaktif (0-6)</text>
+
+    <!-- Decision -->
+    <polygon points="340,150 410,185 340,220 270,185" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+    <text x="340" y="189" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#92400e">Pilihan Menu?</text>
+
+    <!-- Branches -->
+    <rect x="30" y="235" width="85" height="38" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+    <text x="72" y="252" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1e293b">[1] Tampil</text>
+    <text x="72" y="265" text-anchor="middle" font-size="8.5" fill="#64748b">Query SQLite</text>
+
+    <rect x="130" y="235" width="85" height="38" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+    <text x="172" y="252" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1e293b">[2] Tambah</text>
+    <text x="172" y="265" text-anchor="middle" font-size="8.5" fill="#64748b">Input & Validasi</text>
+
+    <rect x="230" y="235" width="85" height="38" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+    <text x="272" y="252" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1e293b">[3] Cari</text>
+    <text x="272" y="265" text-anchor="middle" font-size="8.5" fill="#64748b">Filter Keyword</text>
+
+    <rect x="330" y="235" width="85" height="38" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+    <text x="372" y="252" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1e293b">[4] Ubah</text>
+    <text x="372" y="265" text-anchor="middle" font-size="8.5" fill="#64748b">Update Rekaman</text>
+
+    <rect x="430" y="235" width="85" height="38" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+    <text x="472" y="252" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1e293b">[5] Hapus</text>
+    <text x="472" y="265" text-anchor="middle" font-size="8.5" fill="#64748b">Konfirmasi Y/N</text>
+
+    <rect x="530" y="235" width="75" height="38" rx="4" fill="#f1f5f9" stroke="#64748b" stroke-width="1"/>
+    <text x="567" y="252" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#1e293b">[6] Statistik</text>
+    <text x="567" y="265" text-anchor="middle" font-size="8.5" fill="#64748b">Agregasi Nilai</text>
+
+    <!-- Exit -->
+    <rect x="615" y="235" width="55" height="38" rx="14" fill="#ef4444" stroke="#dc2626" stroke-width="1.5"/>
+    <text x="642" y="252" text-anchor="middle" font-size="9.5" font-weight="bold" fill="#ffffff">[0] Keluar</text>
+    <text x="642" y="265" text-anchor="middle" font-size="8.5" fill="#ffffff">Selesai</text>
+
+    <!-- Connectors -->
+    <line x1="340" y1="38" x2="340" y2="55" stroke="#64748b" stroke-width="1.5"/>
+    <line x1="340" y1="85" x2="340" y2="102" stroke="#64748b" stroke-width="1.5"/>
+    <line x1="340" y1="134" x2="340" y2="150" stroke="#64748b" stroke-width="1.5"/>
+
+    <line x1="270" y1="185" x2="72" y2="185" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="72" y1="185" x2="72" y2="235" stroke="#64748b" stroke-width="1.2"/>
+
+    <line x1="172" y1="185" x2="172" y2="235" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="272" y1="185" x2="272" y2="235" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="372" y1="202" x2="372" y2="235" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="410" y1="185" x2="472" y2="185" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="472" y1="185" x2="472" y2="235" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="410" y1="185" x2="567" y2="185" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="567" y1="185" x2="567" y2="235" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="567" y1="185" x2="642" y2="185" stroke="#64748b" stroke-width="1.2"/>
+    <line x1="642" y1="185" x2="642" y2="235" stroke="#64748b" stroke-width="1.2"/>
+  </svg>
+</div>
+
+<h2>3. Class Diagram - Pemrograman Berorientasi Objek (OOP)</h2>
+<div class="diagram-container">
+  <svg viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg">
+    <!-- Parent Class Person -->
+    <rect x="40" y="20" width="220" height="135" rx="4" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <rect x="40" y="20" width="220" height="28" fill="#dbeafe"/>
+    <text x="150" y="38" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">&lt;&lt;Parent&gt;&gt; Person</text>
+    <line x1="40" y1="48" x2="260" y2="48" stroke="#2563eb" stroke-width="1"/>
+    <text x="50" y="66" font-size="10.5" fill="#334155">- _nama : str</text>
+    <line x1="40" y1="76" x2="260" y2="76" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="50" y="94" font-size="10" fill="#0f172a">+ nama() : str [Getter]</text>
+    <text x="50" y="112" font-size="10" fill="#0f172a">+ nama(value: str) [Setter]</text>
+    <text x="50" y="130" font-size="10" fill="#0f172a">+ info() : str [Polymorphic]</text>
+
+    <!-- Arrow Inheritance -->
+    <line x1="260" y1="87" x2="360" y2="87" stroke="#2563eb" stroke-width="1.5"/>
+    <polygon points="260,87 275,80 275,94" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="310" y="80" text-anchor="middle" font-size="9" fill="#2563eb" font-weight="bold">Inherits</text>
+
+    <!-- Child Class Mahasiswa -->
+    <rect x="360" y="10" width="280" height="160" rx="4" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <rect x="360" y="10" width="280" height="26" fill="#dbeafe"/>
+    <text x="500" y="27" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e3a8a">&lt;&lt;Child&gt;&gt; Mahasiswa</text>
+    <line x1="360" y1="36" x2="640" y2="36" stroke="#2563eb" stroke-width="1"/>
+    <text x="370" y="52" font-size="9.5" fill="#334155">- _nim : str | - _jurusan : str</text>
+    <text x="370" y="66" font-size="9.5" fill="#334155">- _nilai_tugas, _nilai_uts, _nilai_uas : float</text>
+    <line x1="360" y1="74" x2="640" y2="74" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="370" y="90" font-size="9.5" fill="#0f172a">+ nim(), jurusan(), nilai_tugas(), dll. [Properties]</text>
+    <text x="370" y="106" font-size="9.5" fill="#0f172a">+ hitung_nilai_akhir() : float</text>
+    <text x="370" y="122" font-size="9.5" fill="#0f172a">+ get_grade() : str &amp; get_status() : str</text>
+    <text x="370" y="138" font-size="9.5" fill="#0f172a">+ info() : str [Overridden Method]</text>
+    <text x="370" y="154" font-size="9.5" fill="#0f172a">+ to_dict() : dict</text>
+  </svg>
+</div>
+</body>
+</html>

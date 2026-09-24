@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Spesifikasi Kebutuhan Sistem - SIMAMA</title>
+<style>
+  @page { size: A4; margin: 20mm; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; line-height: 1.6; font-size: 13px; }
+  .header-box { text-align: center; border-bottom: 3px double #1e40af; padding-bottom: 12px; margin-bottom: 24px; }
+  .header-box h1 { margin: 0; color: #1e3a8a; font-size: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .header-box p { margin: 4px 0 0; color: #475569; font-size: 13px; }
+  .meta-table { width: 100%; margin-bottom: 20px; font-size: 12px; border-collapse: collapse; }
+  .meta-table td { padding: 4px 8px; border: 1px solid #e2e8f0; }
+  .meta-label { font-weight: bold; background: #f8fafc; width: 25%; }
+  h2 { color: #1e40af; font-size: 15px; border-bottom: 1px solid #cbd5e1; padding-bottom: 4px; margin-top: 20px; }
+  table.data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }
+  table.data-table th, table.data-table td { border: 1px solid #cbd5e1; padding: 6px 10px; }
+  table.data-table th { background: #f1f5f9; color: #0f172a; text-align: left; font-weight: 600; }
+  table.data-table tr:nth-child(even) { background: #f8fafc; }
+  .formula-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 10px 14px; font-family: Consolas, monospace; margin: 10px 0; font-weight: bold; color: #1e40af; }
+</style>
+</head>
+<body>
+<div class="header-box">
+  <h1>Dokumen Spesifikasi Kebutuhan Perangkat Lunak</h1>
+  <p><strong>Sistem Manajemen Data Mahasiswa & Transkrip Nilai (SIMAMA)</strong></p>
+  <p>Skema Sertifikasi: Pemrograman / Software Development (BNSP)</p>
+</div>
+
+<table class="meta-table">
+  <tr>
+    <td class="meta-label">Nama Aplikasi</td>
+    <td>SIMAMA (Sistem Manajemen Data Mahasiswa)</td>
+    <td class="meta-label">Unit Kompetensi</td>
+    <td>Mengimplementasikan Spesifikasi Program</td>
+  </tr>
+  <tr>
+    <td class="meta-label">Bahasa / Platform</td>
+    <td>Python 3.10+ / SQLite 3 (CLI Console)</td>
+    <td class="meta-label">Versi Dokumen</td>
+    <td>1.0.0 (Siap Asesmen)</td>
+  </tr>
+</table>
+
+<h2>1. Deskripsi Umum Sistem</h2>
+<p>
+SIMAMA adalah aplikasi berbasis Command Line Interface (CLI) yang dirancang untuk mengelola data akademik mahasiswa secara terpusat, mencakup identitas diri, pencatatan nilai mata kuliah (Tugas, UTS, UAS), penghitungan nilai akhir berbobot secara otomatis, penentuan predikat grade huruf (A, B, C, D, E), penentuan status kelulusan, penyajian ringkasan statistik kelas, serta operasi CRUD (Create, Read, Update, Delete) yang persisten ke basis data SQLite.
+</p>
+
+<h2>2. Kebutuhan Fungsional (Functional Requirements)</h2>
+<table class="data-table">
+  <tr>
+    <th style="width: 12%;">Kode</th>
+    <th style="width: 28%;">Nama Fitur</th>
+    <th>Deskripsi Kebutuhan</th>
+  </tr>
+  <tr>
+    <td><strong>FR-01</strong></td>
+    <td>Tambah Data & Nilai</td>
+    <td>Sistem dapat menyimpan data mahasiswa baru (NIM, Nama, Jurusan, Nilai Tugas, Nilai UTS, Nilai UAS) ke basis data SQLite.</td>
+  </tr>
+  <tr>
+    <td><strong>FR-02</strong></td>
+    <td>Tampilkan Seluruh Data</td>
+    <td>Sistem dapat menyajikan tabel seluruh data mahasiswa beserta nilai akhir, predikat grade, dan status kelulusan.</td>
+  </tr>
+  <tr>
+    <td><strong>FR-03</strong></td>
+    <td>Pencarian Data Mahasiswa</td>
+    <td>Sistem dapat menyaring data berdasarkan kata kunci pencarian NIM, Nama Lengkap, atau Program Studi.</td>
+  </tr>
+  <tr>
+    <td><strong>FR-04</strong></td>
+    <td>Perbaruan Data (Update)</td>
+    <td>Sistem dapat memperbarui data identitas maupun komponen nilai mahasiswa berdasarkan nomor induk (NIM).</td>
+  </tr>
+  <tr>
+    <td><strong>FR-05</strong></td>
+    <td>Penghapusan Data (Delete)</td>
+    <td>Sistem dapat menghapus rekaman data mahasiswa dari basis data dengan konfirmasi persetujuan keamanan.</td>
+  </tr>
+  <tr>
+    <td><strong>FR-06</strong></td>
+    <td>Statistik Nilai Kelas</td>
+    <td>Sistem dapat menghitung dan menampilkan rata-rata nilai, nilai tertinggi, nilai terendah, serta rasio kelulusan.</td>
+  </tr>
+  <tr>
+    <td><strong>FR-07</strong></td>
+    <td>Validasi Input Data</td>
+    <td>Sistem memverifikasi format NIM alfanumerik (5-20 karakter) dan memastikan nilai akademik berada pada rentang numerik 0.0 s/d 100.0.</td>
+  </tr>
+</table>
+
+<h2>3. Kebutuhan Non-Fungsional (Non-Functional Requirements)</h2>
+<table class="data-table">
+  <tr>
+    <th style="width: 15%;">Kode</th>
+    <th style="width: 25%;">Kategori</th>
+    <th>Deskripsi Kebutuhan</th>
+  </tr>
+  <tr>
+    <td><strong>NFR-01</strong></td>
+    <td>Usability</td>
+    <td>Antarmuka konsol memiliki navigasi menu angka yang jelas (0-6) serta format tabel ASCII yang terstruktur dan mudah dipahami.</td>
+  </tr>
+  <tr>
+    <td><strong>NFR-02</strong></td>
+    <td>Reliability & Robustness</td>
+    <td>Sistem menangani kesalahan input pengguna menggunakan konstruksi <code>try-except</code> sehingga aplikasi tidak mengalami crash/terminasi abnormal.</td>
+  </tr>
+  <tr>
+    <td><strong>NFR-03</strong></td>
+    <td>Portability</td>
+    <td>Menggunakan SQLite 3 dan Python standard library sehingga berjalan tanpa dependensi instalasi DBMS server pihak ketiga.</td>
+  </tr>
+  <tr>
+    <td><strong>NFR-04</strong></td>
+    <td>Maintainability</td>
+    <td>Struktur kode modular mematuhi PEP 8 (Clean Code) dengan pemisahan entitas <code>models.py</code>, database <code>database.py</code>, dan logika <code>utils.py</code>.</td>
+  </tr>
+</table>
+
+<h2>4. Kamus Data (Data Dictionary) - Tabel `mahasiswa`</h2>
+<table class="data-table">
+  <tr>
+    <th>Nama Kolom</th>
+    <th>Tipe Data</th>
+    <th>Constraint</th>
+    <th>Keterangan</th>
+  </tr>
+  <tr>
+    <td><code>id</code></td>
+    <td>INTEGER</td>
+    <td>PRIMARY KEY AUTOINCREMENT</td>
+    <td>Nomor urut unik internal basis data</td>
+  </tr>
+  <tr>
+    <td><code>nim</code></td>
+    <td>TEXT / VARCHAR(20)</td>
+    <td>NOT NULL, UNIQUE</td>
+    <td>Nomor Induk Mahasiswa (kunci pencarian)</td>
+  </tr>
+  <tr>
+    <td><code>nama</code></td>
+    <td>TEXT / VARCHAR(100)</td>
+    <td>NOT NULL</td>
+    <td>Nama lengkap mahasiswa</td>
+  </tr>
+  <tr>
+    <td><code>jurusan</code></td>
+    <td>TEXT / VARCHAR(50)</td>
+    <td>NOT NULL</td>
+    <td>Program studi / Jurusan</td>
+  </tr>
+  <tr>
+    <td><code>nilai_tugas</code></td>
+    <td>REAL</td>
+    <td>NOT NULL, CHECK (0-100)</td>
+    <td>Nilai komponen tugas terbobot</td>
+  </tr>
+  <tr>
+    <td><code>nilai_uts</code></td>
+    <td>REAL</td>
+    <td>NOT NULL, CHECK (0-100)</td>
+    <td>Nilai Ujian Tengah Semester</td>
+  </tr>
+  <tr>
+    <td><code>nilai_uas</code></td>
+    <td>REAL</td>
+    <td>NOT NULL, CHECK (0-100)</td>
+    <td>Nilai Ujian Akhir Semester</td>
+  </tr>
+  <tr>
+    <td><code>nilai_akhir</code></td>
+    <td>REAL</td>
+    <td>NOT NULL</td>
+    <td>Hasil kalkulasi formula bobot akademik</td>
+  </tr>
+  <tr>
+    <td><code>grade</code></td>
+    <td>TEXT</td>
+    <td>NOT NULL, DEFAULT 'E'</td>
+    <td>Predikat huruf mutu (A, B, C, D, E)</td>
+  </tr>
+  <tr>
+    <td><code>status</code></td>
+    <td>TEXT</td>
+    <td>NOT NULL, DEFAULT 'TIDAK LULUS'</td>
+    <td>Status kelulusan (LULUS / TIDAK LULUS)</td>
+  </tr>
+</table>
+
+<h2>5. Aturan Bisnis & Logika Kalkulasi</h2>
+<div class="formula-box">
+  Nilai Akhir = (0.30 x Nilai Tugas) + (0.30 x Nilai UTS) + (0.40 x Nilai UAS)
+</div>
+<table class="data-table">
+  <tr>
+    <th>Rentang Nilai Akhir</th>
+    <th>Grade Huruf</th>
+    <th>Bobot Mutu</th>
+    <th>Status Kelulusan</th>
+  </tr>
+  <tr><td>85.00 - 100.00</td><td><strong>A</strong></td><td>4.00</td><td><span style="color:#15803d; font-weight:bold;">LULUS</span></td></tr>
+  <tr><td>70.00 - 84.99</td><td><strong>B</strong></td><td>3.00</td><td><span style="color:#15803d; font-weight:bold;">LULUS</span></td></tr>
+  <tr><td>55.00 - 69.99</td><td><strong>C</strong></td><td>2.00</td><td><span style="color:#15803d; font-weight:bold;">LULUS</span></td></tr>
+  <tr><td>40.00 - 54.99</td><td><strong>D</strong></td><td>1.00</td><td><span style="color:#b91c1c; font-weight:bold;">TIDAK LULUS</span></td></tr>
+  <tr><td>0.00 - 39.99</td><td><strong>E</strong></td><td>0.00</td><td><span style="color:#b91c1c; font-weight:bold;">TIDAK LULUS</span></td></tr>
+</table>
+</body>
+</html>

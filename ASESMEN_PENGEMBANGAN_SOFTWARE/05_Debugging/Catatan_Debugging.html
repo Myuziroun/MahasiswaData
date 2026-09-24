@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Catatan Debugging - SIMAMA</title>
+<style>
+  @page { size: A4; margin: 18mm; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; color: #1e293b; line-height: 1.5; font-size: 12.5px; }
+  .header-box { text-align: center; border-bottom: 3px double #b91c1c; padding-bottom: 8px; margin-bottom: 16px; }
+  .header-box h1 { margin: 0; color: #991b1b; font-size: 18px; text-transform: uppercase; }
+  .header-box p { margin: 3px 0 0; color: #475569; font-size: 12px; }
+  h2 { color: #991b1b; font-size: 14px; border-bottom: 1px solid #fecaca; padding-bottom: 3px; margin-top: 14px; }
+  .error-card { background: #fff1f2; border: 1px solid #fecdd3; border-radius: 4px; padding: 10px 14px; margin: 10px 0; }
+  .error-card h3 { margin: 0 0 6px; color: #9f1239; font-size: 13px; }
+  pre { background: #0f172a; color: #f8fafc; padding: 8px 12px; border-radius: 4px; font-family: Consolas, monospace; font-size: 11px; margin: 6px 0; overflow-x: auto; }
+  code { font-family: Consolas, monospace; font-size: 11.5px; color: #be123c; }
+  .solution-box { background: #f0fdf4; border-left: 3px solid #22c55e; padding: 6px 10px; margin-top: 6px; font-size: 11.5px; }
+</style>
+</head>
+<body>
+<div class="header-box">
+  <h1>Laporan & Catatan Proses Debugging</h1>
+  <p><strong>Sistem Manajemen Data Mahasiswa & Transkrip Nilai (SIMAMA)</strong></p>
+  <p>Unit Kompetensi: Melakukan Debugging (Kode Unit: J.620100.016.01)</p>
+</div>
+
+<h2>1. Analisis Kasus Error & Penanganan Exception</h2>
+
+<div class="error-card">
+  <h3>Kasus 1: ValueError pada Input String Karakter ke Nilai Desimal</h3>
+  <p><strong>Pemicu:</strong> Pengguna memasukkan karakter teks (contoh: <code>"delapan puluh"</code>) pada saat diminta memasukkan nilai tugas/uts/uas.</p>
+  <p><strong>Pesan Traceback Asli:</strong></p>
+  <pre>ValueError: could not convert string to float: 'delapan puluh'</pre>
+  <div class="solution-box">
+    <strong>Solusi Penerapan Clean Code & Try-Except:</strong>
+    <p>Membungkus proses input dalam fungsi <code>input_float()</code> di <code>utils.py</code> menggunakan loop <code>while True</code> dan blok penangkap <code>try ... except ValueError</code> sehingga sistem memberikan pesan peringatan bersahabat dan tidak berhenti beroperasi.</p>
+  </div>
+</div>
+
+<div class="error-card">
+  <h3>Kasus 2: sqlite3.IntegrityError Akibat Duplikasi Primary Key NIM</h3>
+  <p><strong>Pemicu:</strong> Pendaftaran mahasiswa baru dengan NIM yang sudah ada di dalam tabel database SQLite.</p>
+  <p><strong>Pesan Traceback Asli:</strong></p>
+  <pre>sqlite3.IntegrityError: UNIQUE constraint failed: mahasiswa.nim</pre>
+  <div class="solution-box">
+    <strong>Solusi Penanganan:</strong>
+    <p>Menangkap <code>sqlite3.IntegrityError</code> secara eksplisit di <code>database.py</code> dan mengembalikan tuple status <code>(False, "Gagal: Mahasiswa dengan NIM sudah terdaftar!")</code>.</p>
+  </div>
+</div>
+
+<div class="error-card">
+  <h3>Kasus 3: ZeroDivisionError pada Kalkulasi Rata-rata Kelas Kosong</h3>
+  <p><strong>Pemicu:</strong> Pengguna membuka menu statistik saat basis data dalam keadaan kosong (0 baris).</p>
+  <p><strong>Pesan Traceback Asli:</strong></p>
+  <pre>ZeroDivisionError: division by zero</pre>
+  <div class="solution-box">
+    <strong>Solusi Penanganan:</strong>
+    <p>Pemeriksaan logika pra-kalkulasi <code>if not daftar: return</code> pada <code>main.py</code> sebelum pemanggilan fungsi agregasi matematika.</p>
+  </div>
+</div>
+
+<h2>2. Prosedur Debugging Menggunakan Breakpoint (Visual Studio Code)</h2>
+<p>
+Untuk memastikan kalkulasi nilai berbobot bekerja secara presisi, telah dilakukan pengujian dengan fitur breakpoint:
+</p>
+<ul>
+  <li><strong>Pemasangan Breakpoint (F9):</strong> Ditandai pada file <code>02_SourceCode/project/utils.py</code> baris perhitungan <code>hasil = (0.30 * tugas) + (0.30 * uts) + (0.40 * uas)</code>.</li>
+  <li><strong>Menjalankan Debug (F5):</strong> Menjalankan <code>test_kalkulasi.py</code> dalam mode debug.</li>
+  <li><strong>Pemeriksaan Variabel (Watch Window):</strong> Memeriksa nilai variabel memori saat eksekusi di-pause: <code>tugas=85.0</code>, <code>uts=90.0</code>, <code>uas=88.0</code>.</li>
+  <li><strong>Melangkah Baris per Baris (F10 - Step Over):</strong> Memastikan nilai <code>hasil</code> terhitung akurat menjadi <code>87.7</code> sebelum di-return.</li>
+</ul>
+
+<h2>3. Kesimpulan</h2>
+<p>
+Seluruh potensi runtime error telah dipetakan, ditangani dengan konstruksi <code>try-except</code> yang andal, dan diverifikasi melalui 10 pengujian otomatis unit test tanpa kegagalan (100% PASS).
+</p>
+</body>
+</html>
